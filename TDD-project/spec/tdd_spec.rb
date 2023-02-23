@@ -27,5 +27,36 @@ describe '#two_sum' do
     end
 end
 
+#Assuming square matrix 
+#Flip rows into cols
+#[0,0] doesnt move. [-1,-1] doesnt move. Therefore, diagonal doesnt move
+
+
+describe 'my_transpose' do 
+    subject(:square) {[[0,1,2],[3,4,5],[6,7,8]]}
+   
+    #one context that checks to make sure you arent stealing .transpose
+    context "when transposed, diagonal is unchanged" do 
+        it "has the same left right diagonal" do 
+            expect(square.my_transpose).to end_with([2,5,8])
+            expect(square.my_transpose).to start_with([0,3,6])
+            expect(square.my_transpose[1][1]).to eq(4)
+        end
+        it "flips the entire array from rows to cols" do
+            expect(square.my_transpose).to eq([[0,3,6],[1,4,7],[2,5,8]])
+        end
+    end
+    before do 
+        expect(square).not_to receive(:transpose)
+        square.my_transpose
+    end
+    context "does not invoke built in .transpose" do
+        
+        it "follows the rules" do 
+            expect(square).not_to receive(:transpose)
+        end
+    end
+end
+
 
 

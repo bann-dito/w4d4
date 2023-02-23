@@ -23,4 +23,15 @@ class Array
         end
         winners 
     end
-end
+
+    def my_transpose
+        grid = Array.new(self.length) {Array.new(self.length)}
+        self.each_with_index do |row,idx|
+            row.each_with_index do |ele,idx1|
+                grid[idx1][idx] = self[idx][idx1]
+            end
+        end
+        grid             
+    end 
+
+end 
