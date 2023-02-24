@@ -58,5 +58,66 @@ describe 'my_transpose' do
     end
 end
 
+describe 'stock_picker' do 
+    subject(:array) { [1, 2, 3, 4]}
+    let(:array_down) { [4, 4, 2, 1]}
+    let(:complex) { [4, 10, 78, 25, 5, 90, 2, 30, 45, 37, 72, 42]}
+
+    context "when the array is ascending" do 
+        it "has the lowest value and the highest value" do 
+            expect(stock_picker(array)).to eq([0, 3])
+        end
+    end
+
+    context "when the array is decending" do 
+        it "has the initial days" do
+            expect(stock_picker(array_down)).to eq([0, 1])
+        end
+    end
+
+    context"when the array is jumbled" do 
+        it "has correct days" do 
+            expect(stock_picker(complex)).to eq([0, 5])
+        end
+    end
+end
+
+###towers class
+###take number for towers
+### store for 2 x 2 array with three elements
+## range that number down to 1
+## [[4,3,2,1] [] []] => [[] [] [4,3,2,1]]
+
+#move LIFO
+#stack
+
+describe '#move' do 
+    subject(:towers) {Towers.new}
+    context "needs two indexes" do 
+        it "has an argument of two numbers" do 
+            expect(towers.move(0, 1))
+        end
+    end
+
+    context "behaves like a stack" do
+        it "removes top element, places element on another stack" do 
+            towers.move(0, 1) 
+
+            expect(towers.grid).to eq([[4,3,2], [1], []])
+        end
+    end
+end
+
+describe '#won?' do
+    subject(:towers) {Towers.new}
+    context "when last array" do
+        it "has the right order" do 
+            towers.grid = [[], [], [4, 3, 2, 1]]
+            expect(towers.won?).to eq(true)
+        end
+    end
+end
+
+
 
 

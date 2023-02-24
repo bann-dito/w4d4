@@ -35,3 +35,55 @@ class Array
     end 
 
 end 
+
+def stock_picker(nums)
+    winners = []
+
+    max = -1
+    nums.each_with_index do |ele1, index1|
+        nums.each_with_index do |ele2, index2|
+            if index2 > index1 && max < (ele2 - ele1)
+                max = (ele2 - ele1)
+                winners = [index1, index2]
+            end
+        end
+    end
+
+    winners
+
+end
+
+class Towers
+    attr_accessor :grid
+    def initialize(num = 4)
+
+        @grid = [[4, 3, 2, 1], [], []]
+        
+    end
+
+    def move(num1, num2)
+        @grid[num2] << @grid[num1].pop
+    end
+
+    def won?
+        return true if self.grid == [[], [], [4, 3, 2, 1]]
+        false
+    end
+
+    def gets_move
+        answer = gets.chomp.split(" ")
+
+    end
+
+    def play
+
+        until self.won?
+            p self.grid
+            input = self.gets_move
+            num_1, num_2 = input
+            self.move(num_1.to_i, num_2.to_i)
+        end
+        
+    end
+
+end
